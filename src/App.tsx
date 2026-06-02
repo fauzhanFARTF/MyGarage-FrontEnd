@@ -5,6 +5,7 @@ import { ProtectedRoute } from './features/auth/ProtectedRoute'
 import { DashboardPage } from './pages/DashboardPage'
 import { FuelPage } from './pages/FuelPage'
 import { LoginPage } from './pages/LoginPage'
+import { MaintenancePage } from './pages/MaintenancePage'
 import { OdometerPage } from './pages/OdometerPage'
 import { VehiclesPage } from './pages/VehiclesPage'
 
@@ -18,6 +19,7 @@ function App() {
           <Route path="/vehicles" element={<VehiclesPage />} />
           <Route path="/odometer" element={<OdometerPage />} />
           <Route path="/fuel" element={<FuelPage />} />
+          <Route path="/maintenance" element={<MaintenancePage />} />
         </Route>
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
