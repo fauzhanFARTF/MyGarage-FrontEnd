@@ -31,6 +31,9 @@ export function AppLayout() {
               <NavLink to="/fuel" className={navClass}>
                 BBM
               </NavLink>
+              <NavLink to="/maintenance" className={navClass}>
+                Servis
+              </NavLink>
             </div>
           </div>
           <button
