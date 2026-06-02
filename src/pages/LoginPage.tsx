@@ -1,18 +1,26 @@
 import { useState, type FormEvent } from 'react'
+import { Navigate, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
+import { useAuth } from '../features/auth/AuthContext'
 import { useLogin } from '../features/auth/useLogin'
 
 export function LoginPage() {
+  const { isAuthenticated } = useAuth()
+  const navigate = useNavigate()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const { mutate, isPending, error } = useLogin()
 
   const errorMessage = resolveErrorMessage(error)
 
+  if (isAuthenticated) {
+    return <Navigate to="/" replace />
+  }
+
   function handleSubmit(e: FormEvent) {
     e.preventDefault()
-    mutate({ username, password })
+    mutate({ username, password }, { onSuccess: () => navigate('/', { replace: true }) })
   }
 
   return (

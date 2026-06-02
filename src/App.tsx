@@ -1,10 +1,24 @@
-import { useAuth } from './features/auth/AuthContext'
+import { Navigate, Route, Routes } from 'react-router-dom'
+
+import { AppLayout } from './components/AppLayout'
+import { ProtectedRoute } from './features/auth/ProtectedRoute'
 import { DashboardPage } from './pages/DashboardPage'
 import { LoginPage } from './pages/LoginPage'
+import { OdometerPage } from './pages/OdometerPage'
 
 function App() {
-  const { isAuthenticated } = useAuth()
-  return isAuthenticated ? <DashboardPage /> : <LoginPage />
+  return (
+    <Routes>
+      <Route path="/login" element={<LoginPage />} />
+      <Route element={<ProtectedRoute />}>
+        <Route element={<AppLayout />}>
+          <Route path="/" element={<DashboardPage />} />
+          <Route path="/odometer" element={<OdometerPage />} />
+        </Route>
+      </Route>
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
+  )
 }
 
 export default App
