@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+import { getAccessToken } from './auth'
+
 const baseURL = import.meta.env.VITE_API_BASE_URL
 
 if (!baseURL) {
@@ -16,4 +18,13 @@ export const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
+})
+
+// Lampirkan JWT (jika ada) ke setiap request. Token diisi oleh alur login (Fase 0).
+api.interceptors.request.use((config) => {
+  const token = getAccessToken()
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`
+  }
+  return config
 })
