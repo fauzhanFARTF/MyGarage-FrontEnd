@@ -39,3 +39,18 @@ export interface UsageDashboard {
   window_start: string
   vehicles: VehicleUsage[]
 }
+
+export interface MonthlyCost {
+  month: string // YYYY-MM
+  fuel: number
+  maintenance: number
+  total: number
+}
+
+export interface CostSummary {
+  months: number
+  total_fuel: number
+  total_maintenance: number
+  total: number
+  series: MonthlyCost[]
+}
