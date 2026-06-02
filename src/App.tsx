@@ -5,6 +5,7 @@ import { ProtectedRoute } from './features/auth/ProtectedRoute'
 import { DashboardPage } from './pages/DashboardPage'
 import { LoginPage } from './pages/LoginPage'
 import { OdometerPage } from './pages/OdometerPage'
+import { VehiclesPage } from './pages/VehiclesPage'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Route element={<ProtectedRoute />}>
         <Route element={<AppLayout />}>
           <Route path="/" element={<DashboardPage />} />
+          <Route path="/vehicles" element={<VehiclesPage />} />
           <Route path="/odometer" element={<OdometerPage />} />
         </Route>
       </Route>

@@ -19,3 +19,12 @@ export interface Vehicle {
   created_at: string
   updated_at: string
 }
+
+export interface CreateVehicleInput {
+  name: string
+  plate: string
+  year: number
+  vehicle_type: number
+}
+
+export type UpdateVehicleInput = Partial<CreateVehicleInput>
