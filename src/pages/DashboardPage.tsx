@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+import { CostSummarySection } from '../features/dashboard/CostSummarySection'
 import { useUsageDashboard } from '../features/dashboard/useUsageDashboard'
 import { VehicleUsageCard } from '../features/dashboard/VehicleUsageCard'
 
@@ -49,6 +50,10 @@ export function DashboardPage() {
           ))}
         </div>
       )}
+
+      <div className="mt-5">
+        <CostSummarySection />
+      </div>
     </>
   )
 }
