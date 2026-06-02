@@ -1,8 +1,8 @@
-import { createContext, useCallback, useContext, useState, type ReactNode } from 'react'
+import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from 'react'
 import { useQueryClient } from '@tanstack/react-query'
 
 import { login as loginApi } from '../../api/authApi'
-import { clearTokens, getAccessToken, setTokens } from '../../lib/auth'
+import { AUTH_UNAUTHORIZED_EVENT, clearTokens, getAccessToken, setTokens } from '../../lib/auth'
 import type { LoginCredentials } from '../../types/auth'
 
 interface AuthContextValue {
@@ -27,6 +27,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     clearTokens()
     setIsAuthenticated(false)
     queryClient.clear()
+  }, [queryClient])
+
+  // Dengarkan force-logout dari interceptor Axios (refresh token gagal).
+  useEffect(() => {
+    function handleUnauthorized() {
+      clearTokens()
+      setIsAuthenticated(false)
+      queryClient.clear()
+    }
+    window.addEventListener(AUTH_UNAUTHORIZED_EVENT, handleUnauthorized)
+    return () => window.removeEventListener(AUTH_UNAUTHORIZED_EVENT, handleUnauthorized)
   }, [queryClient])
 
   return (
