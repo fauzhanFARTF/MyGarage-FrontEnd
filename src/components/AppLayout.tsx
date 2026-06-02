@@ -34,6 +34,9 @@ export function AppLayout() {
               <NavLink to="/maintenance" className={navClass}>
                 Servis
               </NavLink>
+              <NavLink to="/documents" className={navClass}>
+                Dokumen
+              </NavLink>
             </div>
           </div>
           <button
