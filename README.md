@@ -3,9 +3,22 @@
 Frontend React SPA untuk aplikasi manajemen kendaraan pribadi GarasiKu.
 
 ## Tech Stack
-- React 18 + Vite + TypeScript
+- React 19 + Vite + TypeScript
 - TanStack Query (React Query)
 - Tailwind CSS
+- Axios (HTTP client)
+
+## Konfigurasi Environment
+
+Salin `.env.example` menjadi `.env`, lalu sesuaikan base URL backend:
+
+```bash
+cp .env.example .env
+```
+
+| Variabel | Keterangan |
+|---|---|
+| `VITE_API_BASE_URL` | Base URL API backend Django (mis. `http://localhost:8000/api/v1`, atau URL ngrok saat perlu akses publik) |
 
 ## Cara Menjalankan (Development)
 
